@@ -11,6 +11,8 @@ export const mergeUserPreferences = ({ state }, userPreferences) => {
       ...state.Timeline.userPreferences,
       ...userPreferences,
     };
+  } else {
+    state.Timeline.ready = true;
   }
 };
 

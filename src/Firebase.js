@@ -6,8 +6,8 @@ import './Firebase.scss';
 
 function Firebase({ children }) {
   const { state, actions } = useOvermind();
-  const [login, setLogin] = useState('contact@matdev.fr');
-  const [password, setPassword] = useState('123456');
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
   const listRef = useRef([]);
 
   const singIn = (e) => {

@@ -35,3 +35,14 @@ export const updateTask = ({ state }, { taskId, timeStart, timeEnd, save }) => {
       .set(state.Tasks.tasksList[taskId]);
   }
 };
+
+export const remove = ({ state }, taskId) => {
+  state.Tasks.tasksList[taskId] = {
+    ...state.Tasks.tasksList[taskId],
+    removed: true,
+  };
+
+  return db
+    .ref(`/users/${state.uid}/tasks/${taskId}`)
+    .set(state.Tasks.tasksList[taskId]);
+};

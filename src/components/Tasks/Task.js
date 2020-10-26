@@ -101,6 +101,10 @@ const Task = ({ task, indexDay, tasksRef }) => {
     });
   };
 
+  function remove() {
+    actions.Tasks.remove(task.id);
+  }
+
   return (
     <div
       className={`Task ${task.noConsider ? '-noConsider' : ''}`}
@@ -123,9 +127,9 @@ const Task = ({ task, indexDay, tasksRef }) => {
         {convertTimeToHour(task.time[1] - task.time[0])}
       </span>
       <span className="Task__description">{task.description}</span>
-      {/* <button className="Task__remove" onClick={(e) => remove(e)}>
+      <button className="Task__remove" onClick={(e) => remove(e)}>
         x
-      </button> */}
+      </button>
       {/* <button className="Task__edit" onClick={e => edit(e)}>
         edit
       </button> */}

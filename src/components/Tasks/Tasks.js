@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useOvermind } from '../../overmind';
 import Task from './Task';
 import './Tasks.scss';
 
 const Tasks = ({ indexDay, date }) => {
+  const tasksRef = useRef(null);
   const { state } = useOvermind();
   const { tasksList = [] } = state.Tasks;
   const tasksOfTheDay = Object.entries(tasksList).reduce(
@@ -13,9 +14,9 @@ const Tasks = ({ indexDay, date }) => {
   );
 
   return (
-    <div className="Tasks">
+    <div className="Tasks" ref={tasksRef}>
       {tasksOfTheDay.map((task, i) => (
-        <Task task={task} indexDay={indexDay} key={i} />
+        <Task task={task} indexDay={indexDay} tasksRef={tasksRef} key={i} />
       ))}
     </div>
   );

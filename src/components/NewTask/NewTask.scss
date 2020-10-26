@@ -4,12 +4,14 @@
 	z-index: 99999;
 	display: none;
 	position: fixed;
-	left: 10%;
+	left: 50%;
 	top: 1%;
 	width: 80%;
+	max-width: 500px;
 	padding: 20px;
 	background: #FFF;
 	border-radius: 5px;
+	transform: translateX(-50%);
 	box-shadow: 1px 1px 10px rgba(0,0,0,.5);
 
 	&.-show{
@@ -17,6 +19,16 @@
 	}
 }
 
+.NewTask__form {
+	display: flex;
+	width: 100%;
+	margin: 0 -10px;
+}
+
+.NewTask__form__field {
+	width: 100%;
+	padding: 0 10px;
+}
 
 .FormNewClient {
 }

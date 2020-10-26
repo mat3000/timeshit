@@ -40,28 +40,34 @@ const NewTask = () => {
         }}
         getApi={(e) => (formApi.current = e)}
       >
-        <Autocomplete
-          name="client"
-          options={clients}
-          placeholder="Client..."
-          label="Client"
-          newOption={(label, validate, cancel) => (
-            <NewClient label={label} validate={validate} cancel={cancel} />
-          )}
-          onChange={() => {
-            if (formApi.current.getValue('client').value.id !== -1) {
-              setDisabled(false);
-            } else {
-              setDisabled(true);
-            }
-          }}
-        />
-        <Textarea
-          name="description"
-          label="Description"
-          rows="5"
-          disabled={disabled}
-        />
+        <div className="NewTask__form">
+          <div className="NewTask__form__field">
+            <Autocomplete
+              name="client"
+              options={clients}
+              placeholder="Client..."
+              label="Client"
+              newOption={(label, validate, cancel) => (
+                <NewClient label={label} validate={validate} cancel={cancel} />
+              )}
+              onChange={() => {
+                if (formApi.current.getValue('client').value.id !== -1) {
+                  setDisabled(false);
+                } else {
+                  setDisabled(true);
+                }
+              }}
+            />
+          </div>
+          <div className="NewTask__form__field">
+            <Textarea
+              name="description"
+              label="Description"
+              rows="2"
+              disabled={disabled}
+            />
+          </div>
+        </div>
         <button type="submit" disabled={disabled}>
           Valider
         </button>

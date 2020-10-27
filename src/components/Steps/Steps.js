@@ -23,7 +23,7 @@ const Steps = ({ indexDay, isToday }) => {
           (steps[steps.length - 1].timeEnd - steps[0].timeStart)) *
         100;
       setTopNow(result);
-    }, 1000);
+    }, 30000);
   }, [steps]);
 
   return (

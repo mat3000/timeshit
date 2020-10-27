@@ -81,8 +81,6 @@
   right: 3px;
   color: #FFF;
 	padding: 8px;
-	// background: #000;
-  // display: none;
 }
 
 .Task__edit{
@@ -94,7 +92,6 @@
   color: #FFF;
   background: #000;
 	padding: 8px;
-  // display: none;
 }
 
 
@@ -102,7 +99,7 @@
 	display: block;
 	position: relative;
 	width: 100%;
-	margin: -2px auto;
+	margin: -3px auto 0px auto;
 	padding: 0 10px;
 	color: #FFF;
 	font-size: 19px;
@@ -111,13 +108,17 @@
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+
+	.Task.-extraSmall & {
+		font-size: 17px;
+	}
 }
 
 .Task__times{
 	display: block;
 	position: relative;
 	width: 100%;
-	margin: 2px auto 2px auto;
+	margin: -2px auto 2px auto;
 	padding: 0 10px;
 	color: #FFF;
 	font-size: 11px;
@@ -126,6 +127,13 @@
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+
+	.Task.-small & {
+		display: none;
+	}
+	.Task.-extraSmall & {
+		display: none;
+	}
 }
 
 .Task__description{
@@ -134,13 +142,17 @@
 	width: 100%;
 	margin: -2px auto 2px auto;
 	padding: 0 10px;
-	color: #BBB;
+	color: rgba(#FFF, .5);
 	font-size: 11px;
 	letter-spacing: 1px;
 	text-align: center;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+
+	.Task.-extraSmall & {
+		display: none;
+	}
 }
 
 .Task__resize-top {
@@ -163,6 +175,27 @@
 		height: 2px;
 		border-radius: 10px;
 		background: rgba(#FFF, .3);
+		transform: translateY(-4px);
+		opacity: 0;
+		transition: all 900ms ease-out;
+	}
+
+	.Task:hover &::after {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+
+	.Task.-small & {
+		height: 10px;
+	}
+	.Task.-small &::after {
+		transform: translateY(2px);
+	}
+	.Task.-extraSmall & {
+		height: 7px;
+	}
+	.Task.-extraSmall &::after {
+		opacity: 0;
 	}
 }
 
@@ -185,5 +218,26 @@
 		height: 2px;
 		border-radius: 10px;
 		background: rgba(#FFF, .3);
+		transform: translateY(4px);
+		opacity: 0;
+		transition: all 900ms ease-out;
+	}
+
+	.Task:hover &::after {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+
+	.Task.-small & {
+		height: 10px;
+	}
+	.Task.-small &::after {
+		transform: translateY(-2px);
+	}
+	.Task.-extraSmall & {
+		height: 7px;
+	}
+	.Task.-extraSmall &::after {
+		opacity: 0;
 	}
 }

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useOvermind } from '../../overmind';
 import {
   useToolsStep,
@@ -9,8 +9,7 @@ import {
 
 import './Task.scss';
 
-const Task = ({ task, indexDay, tasksRef }) => {
-  const taskRef = useRef(null);
+const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
   const { state, actions } = useOvermind();
   const {
     getPercentByTime,
@@ -105,12 +104,17 @@ const Task = ({ task, indexDay, tasksRef }) => {
     actions.Tasks.remove(task.id);
   }
 
+  const { step } = state.Timeline.userPreferences;
+  const height = stepHeight * ((task.time[1] - task.time[0]) / step);
+  let smallStatus = '';
+  if (height < 100) smallStatus = '-small';
+  if (height < 50) smallStatus = '-extraSmall';
+
   return (
     <div
-      className={`Task ${task.noConsider ? '-noConsider' : ''}`}
+      className={`Task ${smallStatus} ${task.noConsider ? '-noConsider' : ''}`}
       style={{ top: `${start}%`, height: `${end - start}%` }}
       onMouseDown={(e) => mouseDown(e, 'move')}
-      ref={taskRef}
     >
       <div
         className="Task__resize-top"
@@ -130,7 +134,7 @@ const Task = ({ task, indexDay, tasksRef }) => {
       <button className="Task__remove" onClick={(e) => remove(e)}>
         x
       </button>
-      {/* <button className="Task__edit" onClick={e => edit(e)}>
+      {/* <button className="Task__edit" onClick={(e) => edit(e)}>
         edit
       </button> */}
       <div

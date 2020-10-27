@@ -30,7 +30,7 @@ const NewTask = () => {
             date: state.Timeline.daySelected,
             clientId: formData.client.id,
             description: formData.description,
-            consider: !!formData.consider,
+            consider: true,
             time: [
               state.Timeline.select.timeStart,
               state.Timeline.select.timeEnd,

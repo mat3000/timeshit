@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useOvermind } from '../../overmind';
 import {
   useToolsStep,
@@ -134,8 +134,8 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
       <button className="Task__remove" onClick={(e) => remove(e)}>
         x
       </button>
-      {/* <button className="Task__edit" onClick={(e) => edit(e)}>
-        edit
+      {/* <button className="Task__edit">
+        <span />
       </button> */}
       <div
         className="Task__resize-bottom"

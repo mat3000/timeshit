@@ -10,8 +10,6 @@ import Timelines from './components/Timeline/Timeline';
 import NewTask from './components/NewTask/NewTask';
 // import EditTask from '../EditTask/EditTask';
 // import Options from '../Options/Options';
-// import Component from './Component';
-// import Component2 from './Component2';
 import './styles.scss';
 
 const overmind = createOvermind(config);
@@ -21,8 +19,6 @@ function App() {
     <Provider value={overmind}>
       <Firebase />
       <div className="App">
-        {/* <Component /> */}
-        {/* <Component2 /> */}
         <Back />
         <div className="App__content">
           <Timelines />

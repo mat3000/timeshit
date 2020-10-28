@@ -109,7 +109,7 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
   let smallStatus = '';
   if (height < 100) smallStatus = '-small';
   if (height < 50) smallStatus = '-small -extraSmall';
-  if (height < 2) smallStatus = '-small -extraSmall -extremSmall';
+  if (height < 20) smallStatus = '-small -extraSmall -extremSmall';
 
   return (
     <div

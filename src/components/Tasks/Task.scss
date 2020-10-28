@@ -169,6 +169,9 @@
 	.Task.-extraSmall & {
 		font-size: 17px;
 	}
+	.Task.-extremSmall & {
+		display: none;
+	}
 }
 
 .Task__times{
@@ -186,9 +189,6 @@
 	text-overflow: ellipsis;
 
 	.Task.-small & {
-		display: none;
-	}
-	.Task.-extraSmall & {
 		display: none;
 	}
 }

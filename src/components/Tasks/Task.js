@@ -108,7 +108,8 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
   const height = stepHeight * ((task.time[1] - task.time[0]) / step);
   let smallStatus = '';
   if (height < 100) smallStatus = '-small';
-  if (height < 50) smallStatus = '-extraSmall';
+  if (height < 50) smallStatus = '-small -extraSmall';
+  if (height < 2) smallStatus = '-small -extraSmall -extremSmall';
 
   return (
     <div

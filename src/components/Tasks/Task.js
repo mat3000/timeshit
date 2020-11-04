@@ -135,7 +135,10 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
       </span>
       <span className="Task__description">{task.description}</span>
 
-      <button className="Task__edit" onClick={() => setMenu(!menu)}>
+      <button
+        className={`Task__edit ${menu ? '-show' : ''}`}
+        onClick={() => setMenu(!menu)}
+      >
         <span />
       </button>
 

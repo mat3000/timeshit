@@ -117,7 +117,6 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
       className={`Task ${smallStatus} ${task.noConsider ? '-noConsider' : ''}`}
       style={{ top: `${start}%`, height: `${end - start}%` }}
       onMouseDown={(e) => mouseDown(e, 'move')}
-      onMouseLeave={() => setMenu(false)}
     >
       <div
         className="Task__resize-top"
@@ -145,9 +144,10 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
       />
       <div
         className={`Task__menu ${menu ? '-show' : ''}`}
-        onClick={(e) => setMenu(false)}
+        onClick={() => setMenu(false)}
+        onMouseLeave={() => setMenu(false)}
       >
-        <div className="Task__menu__item">Editer...</div>
+        <div className="Task__menu__item -disabled">Editer...</div>
         <div className="Task__menu__item" onClick={() => remove()}>
           Supprimer
         </div>

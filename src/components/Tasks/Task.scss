@@ -367,4 +367,9 @@
 	&:hover {
 		background: #EEE;
 	}
+
+	&.-disabled {
+		background: #FFF;
+		opacity: .5;
+	}
 }

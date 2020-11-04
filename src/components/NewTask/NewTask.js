@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { format } from 'date-fns';
 import Form, { Autocomplete, Checkbox, Textarea } from '../Form';
 import { useOvermind } from '../../overmind';
 import NewClient from '../NewClient/NewClient';
@@ -29,7 +28,7 @@ const NewTask = () => {
           actions.Tasks.newTask({
             date: state.Timeline.daySelected,
             clientId: formData.client.id,
-            description: formData.description,
+            description: formData.description || '',
             consider: true,
             time: [
               state.Timeline.select.timeStart,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useOvermind } from '../../overmind';
 import {
   useToolsStep,
@@ -10,6 +10,7 @@ import {
 import './Task.scss';
 
 const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
+  const [menu, setMenu] = useState(false);
   const { state, actions } = useOvermind();
   const {
     getPercentByTime,
@@ -108,7 +109,7 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
   const height = stepHeight * ((task.time[1] - task.time[0]) / step);
   let smallStatus = '';
   if (height < 100) smallStatus = '-small';
-  if (height < 50) smallStatus = '-small -extraSmall';
+  if (height < 40) smallStatus = '-small -extraSmall';
   if (height < 20) smallStatus = '-small -extraSmall -extremSmall';
 
   return (
@@ -132,16 +133,24 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
         {convertTimeToHour(task.time[1] - task.time[0])}
       </span>
       <span className="Task__description">{task.description}</span>
-      <button className="Task__remove" onClick={(e) => remove(e)}>
-        x
-      </button>
-      {/* <button className="Task__edit">
+
+      <button className="Task__edit" onClick={() => setMenu(!menu)}>
         <span />
-      </button> */}
+      </button>
+
       <div
         className="Task__resize-bottom"
         onMouseDown={(e) => mouseDown(e, 'bottom')}
       />
+      <div
+        className={`Task__menu ${menu ? '-show' : ''}`}
+        onClick={(e) => setMenu(false)}
+      >
+        <div className="Task__menu__item">Editer...</div>
+        <div className="Task__menu__item" onClick={() => remove()}>
+          Supprimer
+        </div>
+      </div>
     </div>
   );
 };

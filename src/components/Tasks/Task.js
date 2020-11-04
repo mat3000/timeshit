@@ -117,6 +117,7 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
       className={`Task ${smallStatus} ${task.noConsider ? '-noConsider' : ''}`}
       style={{ top: `${start}%`, height: `${end - start}%` }}
       onMouseDown={(e) => mouseDown(e, 'move')}
+      onMouseLeave={() => setMenu(false)}
     >
       <div
         className="Task__resize-top"

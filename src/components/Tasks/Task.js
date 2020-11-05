@@ -112,12 +112,17 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
   if (height < 40) smallStatus = '-small -extraSmall';
   if (height < 20) smallStatus = '-small -extraSmall -extremSmall';
 
+  const title = [client.label];
+  if (task.description) title.push(task.description);
+  title.push(convertTimeToHour(task.time[1] - task.time[0]));
+
   return (
     <div
       className={`Task ${smallStatus} ${task.noConsider ? '-noConsider' : ''}`}
       style={{ top: `${start}%`, height: `${end - start}%` }}
       onMouseDown={(e) => mouseDown(e, 'move')}
       onMouseLeave={() => setMenu(false)}
+      title={title.join(' | ')}
     >
       <div
         className="Task__resize-top"

@@ -17,10 +17,7 @@ export const setTaskByDate = async ({ state }, rawTasks) => {
 };
 
 export const newTask = ({ state }, newTask) => {
-  return db
-    .ref(`/users/${state.uid}/tasks`)
-    .push(newTask)
-    .then((snapshot) => console.log(snapshot.key));
+  return db.ref(`/users/${state.uid}/tasks`).push(newTask);
 };
 
 export const updateTask = ({ state }, { taskId, timeStart, timeEnd, save }) => {

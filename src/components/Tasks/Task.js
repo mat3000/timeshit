@@ -155,6 +155,7 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
         className={`Task__menu ${menu ? '-show' : ''}`}
         onClick={() => setMenu(false)}
       >
+        <div className="Task__menu__item -disabled">Copier</div>
         <div className="Task__menu__item -disabled">Editer...</div>
         <div className="Task__menu__item" onClick={() => remove()}>
           Supprimer

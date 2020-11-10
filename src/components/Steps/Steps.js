@@ -13,7 +13,7 @@ const Steps = ({ indexDay, isToday }) => {
   const end = getPercentByTime(state.Timeline.userPreferences.break[1]);
 
   useEffect(() => {
-    setInterval(() => {
+    function now() {
       const hour = parseInt(format(new Date(), 'H', { locale: fr }), 10);
       const minutes =
         parseInt(format(new Date(), 'mm', { locale: fr }), 10) / 60;
@@ -23,8 +23,12 @@ const Steps = ({ indexDay, isToday }) => {
           (steps[steps.length - 1].timeEnd - steps[0].timeStart)) *
         100;
       setTopNow(result);
-    }, 30000);
-  }, [steps]);
+    }
+    if (isToday) {
+      now();
+      setInterval(() => now(), 30000);
+    }
+  }, [isToday, steps]);
 
   return (
     <div className="Steps">

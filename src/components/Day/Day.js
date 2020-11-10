@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { format, subDays, getTime } from 'date-fns';
 import fr from 'date-fns/locale/fr';
 import { useOvermind } from '../../overmind';
@@ -7,7 +7,7 @@ import Tasks from '../Tasks/Tasks';
 import Select from '../Select/Select';
 import './Day.scss';
 
-export default ({ indexDay, hoursDay }) => {
+export default ({ indexDay, hoursDay, now }) => {
   const { state } = useOvermind();
   const date = state.Timeline.datesOfTheWeek[indexDay];
 
@@ -19,15 +19,8 @@ export default ({ indexDay, hoursDay }) => {
 
   const start = getPercentByTime(hoursDay[0]);
   const end = getPercentByTime(hoursDay[1]);
-  const toDay = format(date, 'yyyyMMdd') === format(new Date(), 'yyyyMMdd');
+  const toDay = format(date, 'yyyyMMdd') === now;
   const nextDay = getTime(subDays(Date.now(), 1)) > getTime(date);
-  // const totalHourDay =
-  //   day[1] - day[0] - (state.options.break.end - state.options.break.start);
-  // const totalWorkedHourDay = tasks.tasks.reduce((a, e) => {
-  //   return a + (e.time[1] - e.time[0]);
-  // }, 0);
-
-  // console.log('Day', indexDay);
 
   return (
     <div className={`Timeline ${toDay ? '-today' : ''}`}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import fr from 'date-fns/locale/fr';
 import { useOvermind } from '../../overmind';
@@ -6,8 +6,10 @@ import Day from '../Day/Day';
 // import { IconSettings } from '../Icon';
 import './Timeline.scss';
 
+let timeout = null;
 export default () => {
   const { state, actions } = useOvermind();
+  const [now, setNow] = useState(format(new Date(), 'yyyyMMdd'));
   const dateStart =
     (state.Timeline.datesOfTheWeek &&
       state.Timeline.datesOfTheWeek.length &&
@@ -29,6 +31,15 @@ export default () => {
         }
       )) ||
     '';
+
+  useEffect(() => {
+    document.addEventListener('visibilitychange', (e) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        setNow(format(new Date(), 'yyyyMMdd'));
+      }, 500);
+    });
+  }, []);
 
   return (
     <div className="Timelines">
@@ -52,7 +63,7 @@ export default () => {
       <div className="Timelines__content">
         {state.Timeline.userPreferences.weekOfWork.map(
           ({ day, hours }, index) => (
-            <Day key={index} indexDay={day} hoursDay={hours} />
+            <Day key={index} indexDay={day} hoursDay={hours} now={now} />
           )
         )}
       </div>

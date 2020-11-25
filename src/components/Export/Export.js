@@ -96,7 +96,7 @@ const Tasks = ({ indexDay, date }) => {
               <input
                 type="text"
                 readonly
-                value={value.ticket}
+                value={value.description}
                 onClick={(e) => e.target.select()}
                 className="Export__input"
               />

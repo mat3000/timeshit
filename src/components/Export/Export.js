@@ -105,24 +105,15 @@ const Tasks = ({ indexDay, date }) => {
               onClick={(e) => e.target.select()}
               className="Export__title"
             />
-            {value.ticket && (
-              <input
-                type="text"
-                readonly
-                value={value.ticket}
-                onClick={(e) => e.target.select()}
-                className="Export__input"
-              />
-            )}
-            {value.description && (
-              <input
-                type="text"
-                readonly
-                value={value.description}
-                onClick={(e) => e.target.select()}
-                className="Export__input"
-              />
-            )}
+            <a
+              href={`https://iolab.atlassian.net/browse/${
+                value.ticket || value.description
+              }`}
+              target="_blank"
+              className="Export__link"
+            >
+              {value.ticket || value.description || '-'}
+            </a>
             <input
               type="text"
               readonly

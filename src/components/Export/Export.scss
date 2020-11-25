@@ -34,6 +34,14 @@
   font-weight: bold;
 }
 
+.Export__link {
+  display: block;
+  color: #FFF;
+  margin-bottom: 3px;
+  padding: 3px;
+  background: rgba(#FFF, .05);
+}
+
 .Export__input {
   @include reset-input();
 

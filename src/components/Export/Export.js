@@ -121,7 +121,7 @@ const Tasks = ({ indexDay, date }) => {
                 )
               }
             >
-              >{value.ticket || value.description || '-'}
+              {value.ticket || value.description || '-'}
             </a>
             <input
               type="text"

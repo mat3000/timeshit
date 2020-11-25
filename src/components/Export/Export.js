@@ -33,7 +33,7 @@ const Tasks = ({ indexDay, date }) => {
         (client) => client.id === task.clientId
       );
       const id = `${task.ticket}-${task.clientId}`;
-      const newDate = format(date, 'd/LLL/yy');
+      const newDate = format(date, 'dd/LLL/yy');
       const start = `${newDate} ${convertTimeToHourEn(task.time[0])}`;
 
       if (task.ticket) {

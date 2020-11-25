@@ -123,14 +123,20 @@ const Tasks = ({ indexDay, date }) => {
               type="text"
               readonly
               value={convertTimeToJira(value.time)}
-              onClick={(e) => e.target.select()}
+              onClick={(e) => {
+                e.target.select();
+                document.execCommand('copy');
+              }}
               className="Export__input"
             />
             <input
               type="text"
               readonly
               value={value.startHour}
-              onClick={(e) => e.target.select()}
+              onClick={(e) => {
+                e.target.select();
+                document.execCommand('copy');
+              }}
               className="Export__input"
             />
           </div>

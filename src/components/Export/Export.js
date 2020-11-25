@@ -32,11 +32,33 @@ const Tasks = ({ indexDay, date }) => {
       const client = state.Clients.clients.find(
         (client) => client.id === task.clientId
       );
-      const id = `${task.ticket}-${task.clientId}`;
       const newDate = format(date, 'dd/LLL/yy');
       const start = `${newDate} ${convertTimeToHourEn(task.time[0])}`;
 
       if (task.ticket) {
+        const id = `${task.ticket}-${task.clientId}`;
+        if (acc[id]) {
+          acc[id].time += task.time[1] - task.time[0];
+          if (acc[id].startTime > task.time[0]) {
+            acc[id].startTime = task.time[0];
+            acc[id].startHour = start;
+          }
+          return { ...acc };
+        } else {
+          return {
+            ...acc,
+            [id]: {
+              client: client.label,
+              ticket: task.ticket,
+              description: task.description,
+              time: task.time[1] - task.time[0],
+              startTime: task.time[0],
+              startHour: start,
+            },
+          };
+        }
+      } else if (task.description) {
+        const id = `${task.description}-${task.clientId}`;
         if (acc[id]) {
           acc[id].time += task.time[1] - task.time[0];
           if (acc[id].startTime > task.time[0]) {

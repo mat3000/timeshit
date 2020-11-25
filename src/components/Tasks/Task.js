@@ -138,6 +138,7 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
       <span className="Task__times">
         {convertTimeToHour(task.time[1] - task.time[0])}
       </span>
+      <span className="Task__description">{task.ticket}</span>
       <span className="Task__description">{task.description}</span>
 
       <button

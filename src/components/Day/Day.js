@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { format, subDays, getTime } from 'date-fns';
 import fr from 'date-fns/locale/fr';
 import { useOvermind } from '../../overmind';
 import Steps from '../Steps/Steps';
 import Tasks from '../Tasks/Tasks';
 import Select from '../Select/Select';
+import Export from '../Export/Export';
 import './Day.scss';
 
 export default ({ indexDay, hoursDay, now }) => {
   const { state } = useOvermind();
   const date = state.Timeline.datesOfTheWeek[indexDay];
+  const [exportStatus, setExportStatus] = useState(false);
 
   const getPercentByTime = (time) =>
     state.Timeline.steps.reduce(
@@ -36,8 +38,16 @@ export default ({ indexDay, hoursDay, now }) => {
         >
           ⚠️
         </span>
+        <button
+          className="Timeline__export"
+          type="button"
+          onClick={() => setExportStatus((e) => !e)}
+        >
+          ▾
+        </button>
       </div>
       <div className="Timeline__wrap">
+        {exportStatus && <Export indexDay={indexDay} date={date} />}
         <div
           className="Timeline__item"
           style={{ height: `${end - start}%`, top: `${start}%` }}

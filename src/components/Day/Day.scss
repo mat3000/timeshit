@@ -22,6 +22,19 @@
 	padding: 5px;
 	color: #FFF;
 	text-align: center;
+	// display: flex;
+	// justify-content: center;
+	// align-items: center;
+}
+
+.Timeline__export {
+	@include reset-button();
+
+	position: absolute;
+	color: #FFF;
+	right: 5px;
+	// margin-right: 0;
+	// margin-left: auto;
 }
 
 .Timeline__item {

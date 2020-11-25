@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import Form, { Autocomplete, Checkbox, Textarea } from '../Form';
+import Form, { Autocomplete, Textarea, Input } from '../Form';
 import { useOvermind } from '../../overmind';
 import NewClient from '../NewClient/NewClient';
 import './NewTask.scss';
@@ -28,6 +28,7 @@ const NewTask = () => {
           actions.Tasks.newTask({
             date: state.Timeline.daySelected,
             clientId: formData.client.id,
+            ticket: formData.ticket || '',
             description: formData.description || '',
             consider: true,
             time: [
@@ -59,14 +60,22 @@ const NewTask = () => {
             />
           </div>
           <div className="NewTask__form__field">
-            <Textarea
-              name="description"
-              label="Description"
+            <Input
+              name="ticket"
+              label="N° ticket"
               rows="2"
               disabled={disabled}
             />
           </div>
         </div>
+        {/* <div>
+          <Textarea
+            name="description"
+            label="Description"
+            rows="2"
+            disabled={disabled}
+          />
+        </div> */}
         <button type="submit" disabled={disabled}>
           Valider
         </button>

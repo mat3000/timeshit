@@ -2,9 +2,9 @@ import React from 'react';
 import asField from '../../field';
 import './Input.scss';
 
-const Input = ({ state, api, label, ...rest }) => {
+const Input = ({ state, api, label, disabled, ...rest }) => {
   return (
-    <p className="Input">
+    <p className={`Input ${disabled ? '-disabled' : ''}`}>
       <label className="Input__group">
         <span className="Input__label">{label}</span>
         <input
@@ -20,6 +20,7 @@ const Input = ({ state, api, label, ...rest }) => {
             }
           }}
           className="Input__field"
+          disabled={disabled}
           {...rest}
         />
         {state.error && <span className="Input__error">{state.error}</span>}

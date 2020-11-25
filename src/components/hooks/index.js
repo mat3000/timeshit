@@ -51,6 +51,34 @@ export const useConvertTimeToHour = () => {
   return convertTimeToHour;
 };
 
+export const useConvertTimeToHourEn = () => {
+  const convertTimeToHour = (time) => {
+    let hour = Math.floor(time);
+    let type = 'AM';
+    let minute = (time - hour) * 60;
+    if (hour > 12) {
+      hour -= 12;
+      type = 'PM';
+    }
+    return `${hour > 9 ? hour : `0${hour}`}:${
+      minute > 9 ? minute : `0${minute}`
+    } ${type}`;
+  };
+
+  return convertTimeToHour;
+};
+
+export const useConvertTimeToJira = () => {
+  const convertTimeToHour = (time) => {
+    let hour = Math.floor(time);
+    let minute = (time - hour) * 60;
+    if (hour > 23) hour -= 24;
+    return `${hour ? `${hour}h` : ''}${minute ? ` ${minute}m` : ''}`.trim();
+  };
+
+  return convertTimeToHour;
+};
+
 export const useToolsStep = (indexDay) => {
   const { state } = useOvermind();
   const [start, end] = state.Timeline.userPreferences.weekOfWork.find(

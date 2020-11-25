@@ -105,11 +105,7 @@ const Tasks = ({ indexDay, date }) => {
               onClick={(e) => e.target.select()}
               className="Export__title"
             />
-            <a
-              href={`https://iolab.atlassian.net/browse/${
-                value.ticket || value.description
-              }`}
-              target="popup"
+            <span
               className="Export__link"
               onClick={() =>
                 window.open(
@@ -122,7 +118,7 @@ const Tasks = ({ indexDay, date }) => {
               }
             >
               {value.ticket || value.description || '-'}
-            </a>
+            </span>
             <input
               type="text"
               readonly

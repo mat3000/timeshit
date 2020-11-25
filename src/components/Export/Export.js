@@ -109,10 +109,19 @@ const Tasks = ({ indexDay, date }) => {
               href={`https://iolab.atlassian.net/browse/${
                 value.ticket || value.description
               }`}
-              target="_blank"
+              target="popup"
               className="Export__link"
+              onClick={() =>
+                window.open(
+                  `https://iolab.atlassian.net/browse/${
+                    value.ticket || value.description
+                  }`,
+                  'name',
+                  'width=1200,height=900'
+                )
+              }
             >
-              {value.ticket || value.description || '-'}
+              >{value.ticket || value.description || '-'}
             </a>
             <input
               type="text"

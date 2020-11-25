@@ -19,7 +19,15 @@ const Tasks = ({ indexDay, date }) => {
   );
 
   const test = tasksOfTheDay
-    .sort((a, b) => a.time[0] - b.time[0])
+    .sort((a, b) => {
+      const clientA = state.Clients.clients.find(
+        (client) => client.id === a.clientId
+      );
+      const clientB = state.Clients.clients.find(
+        (client) => client.id === b.clientId
+      );
+      return clientA.label.localeCompare(clientB.label);
+    })
     .reduce((acc, task) => {
       const client = state.Clients.clients.find(
         (client) => client.id === task.clientId
@@ -42,6 +50,7 @@ const Tasks = ({ indexDay, date }) => {
             [id]: {
               client: client.label,
               ticket: task.ticket,
+              description: task.description,
               time: task.time[1] - task.time[0],
               startTime: task.time[0],
               startHour: start,
@@ -54,6 +63,7 @@ const Tasks = ({ indexDay, date }) => {
         [task.id]: {
           client: client.label,
           ticket: task.ticket,
+          description: task.description,
           time: task.time[1] - task.time[0],
           startTime: task.time[0],
           startHour: start,
@@ -74,6 +84,15 @@ const Tasks = ({ indexDay, date }) => {
               className="Export__title"
             />
             {value.ticket && (
+              <input
+                type="text"
+                readonly
+                value={value.ticket}
+                onClick={(e) => e.target.select()}
+                className="Export__input"
+              />
+            )}
+            {value.description && (
               <input
                 type="text"
                 readonly

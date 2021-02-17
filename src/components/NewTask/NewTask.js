@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Form, { Autocomplete, Textarea, Input } from '../Form';
 import { useOvermind } from '../../overmind';
 import NewClient from '../NewClient/NewClient';
@@ -20,6 +20,16 @@ const NewTask = () => {
     else if (bandA < bandB) comparison = -1;
     return comparison;
   });
+
+  // const clientValue = formApi?.current?.getValue('client')?.value?.prefix;
+  // // // console.log(clientValue);
+
+  // useEffect(() => {
+  //   console.log('okok', clientValue);
+  //   formApi.current.setValue('ticket', clientValue || '');
+  // }, [clientValue]);
+
+  // console.log(formApi?.current?.getValue('client'));
 
   return (
     <div className={`NewTask ${state.Timeline.newTaskStatus ? '-show' : ''}`}>
@@ -51,6 +61,8 @@ const NewTask = () => {
                 <NewClient label={label} validate={validate} cancel={cancel} />
               )}
               onChange={() => {
+                const prefix = formApi.current.getValue('client').value.prefix;
+                formApi.current.setValue('ticket', prefix || '');
                 if (formApi.current.getValue('client').value.id !== -1) {
                   setDisabled(false);
                 } else {
@@ -68,14 +80,14 @@ const NewTask = () => {
             />
           </div>
         </div>
-        {/* <div>
+        <div>
           <Textarea
             name="description"
             label="Description"
             rows="2"
             disabled={disabled}
           />
-        </div> */}
+        </div>
         <button type="submit" disabled={disabled}>
           Valider
         </button>

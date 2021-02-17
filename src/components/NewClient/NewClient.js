@@ -6,6 +6,7 @@ import './NewClient.scss';
 const FormNewClient = ({ label, validate, cancel }) => {
   const { state, actions } = useOvermind();
   const [color, setColor] = useState('');
+  const [prefix, setPrefix] = useState('');
   const [description, setDescription] = useState('');
   const [consider, setConsider] = useState(true);
 
@@ -21,6 +22,14 @@ const FormNewClient = ({ label, validate, cancel }) => {
             style={{ backgroundColor: c }}
           />
         ))}
+      </label>
+      <label className="FormNewClient__group">
+        <span className="FormNewClient__label">Identifiant :</span>
+        <input
+          onChange={({ target }) => setPrefix(target.value)}
+          className="FormNewClient__textarea"
+          rows={5}
+        />
       </label>
       <label className="FormNewClient__group">
         <span className="FormNewClient__label">Description :</span>
@@ -47,6 +56,7 @@ const FormNewClient = ({ label, validate, cancel }) => {
           actions.Clients.newClient({
             label,
             color,
+            prefix,
             description,
             consider,
           }).then((newClientId) => validate(newClientId));

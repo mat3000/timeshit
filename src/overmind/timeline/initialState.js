@@ -7,6 +7,10 @@ export const initialUserPreferences = {
     '#af8989',
     '#4e4e4e',
     '#4a8a36',
+    '#A9C',
+    '#9CA',
+    '#A30',
+    '#D54',
   ],
   weekOfWork: [
     { day: 0, hours: [9, 18] },

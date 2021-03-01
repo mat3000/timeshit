@@ -122,6 +122,16 @@ const Tasks = ({ indexDay, date }) => {
             <input
               type="text"
               readonly
+              value={value.ticket}
+              onClick={(e) => {
+                e.target.select();
+                document.execCommand('copy');
+              }}
+              className="Export__input"
+            />
+            <input
+              type="text"
+              readonly
               value={convertTimeToJira(value.time)}
               onClick={(e) => {
                 e.target.select();

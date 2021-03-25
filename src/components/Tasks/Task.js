@@ -156,13 +156,6 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
         className={`Task__menu ${menu ? '-show' : ''}`}
         onClick={() => setMenu(false)}
       >
-        <div
-          className="Task__menu__item"
-          onClick={() => actions.Tasks.copy(task)}
-        >
-          Copier
-        </div>
-        <div className="Task__menu__item -disabled">Editer...</div>
         {task.ticket ? (
           <a
             className="Task__menu__item"
@@ -175,6 +168,15 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
         ) : (
           <div className="Task__menu__item -disabled">Voir le ticket...</div>
         )}
+        <hr className="Task__menu__item--rh" />
+        <div
+          className="Task__menu__item"
+          onClick={() => actions.Tasks.copy(task)}
+        >
+          Copier
+        </div>
+        <div className="Task__menu__item -disabled">Editer...</div>
+
         <hr className="Task__menu__item--rh" />
         <div className="Task__menu__item" onClick={() => remove()}>
           Supprimer

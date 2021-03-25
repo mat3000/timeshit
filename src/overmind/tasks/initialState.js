@@ -1,4 +1,5 @@
 export const initialState = {
+  clipboard: null,
   loading: false,
   tasksList: {
     // uid1: {

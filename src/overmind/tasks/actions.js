@@ -1,6 +1,14 @@
 import { initialState } from './initialState';
 import { db } from '../../overmind/services';
 
+export const copy = ({ state }, task) => {
+  state.Tasks.clipboard = task;
+};
+
+export const clearClipboard = ({ state }) => {
+  state.Tasks.clipboard = null;
+};
+
 export const resetState = ({ state }) => {
   state.Tasks = { ...initialState };
 };

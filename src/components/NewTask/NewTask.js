@@ -24,12 +24,31 @@ const NewTask = () => {
   // const clientValue = formApi?.current?.getValue('client')?.value?.prefix;
   // // // console.log(clientValue);
 
-  // useEffect(() => {
-  //   console.log('okok', clientValue);
-  //   formApi.current.setValue('ticket', clientValue || '');
-  // }, [clientValue]);
+  useEffect(() => {
+    if (state.Timeline.newTaskStatus && state.Tasks.clipboard) {
+      console.log('clipboard', state.Tasks.clipboard.clientId);
+      const clientLabel = state.Clients.clients.find(
+        ({ id }) => id === state.Tasks.clipboard.clientId
+      );
+      formApi.current.setValue('client', {
+        label: clientLabel.label,
+        id: state.Tasks.clipboard.clientId,
+      });
+      formApi.current.setValue('ticket', state.Tasks.clipboard.ticket);
+      formApi.current.setValue(
+        'description',
+        state.Tasks.clipboard.description
+      );
+      setDisabled(false);
 
-  // console.log(formApi?.current?.getValue('client'));
+      actions.Tasks.clearClipboard();
+    }
+  }, [
+    state.Timeline.newTaskStatus,
+    state.Clients.clients,
+    state.Tasks.clipboard,
+    actions.Tasks,
+  ]);
 
   return (
     <div className={`NewTask ${state.Timeline.newTaskStatus ? '-show' : ''}`}>
@@ -61,6 +80,7 @@ const NewTask = () => {
                 <NewClient label={label} validate={validate} cancel={cancel} />
               )}
               onChange={() => {
+                formApi.current.setValue('description', '');
                 const prefix = formApi.current.getValue('client').value.prefix;
                 formApi.current.setValue('ticket', prefix || '');
                 if (formApi.current.getValue('client').value.id !== -1) {

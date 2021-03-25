@@ -18,7 +18,7 @@ const Tasks = ({ indexDay, date }) => {
   const [stepHeight, setStepHeight] = useState(0);
   const tasksRef = useRef(null);
   const { state } = useOvermind();
-  const { tasksList = [] } = state.Tasks;
+  const { tasksList = [], clipboard } = state.Tasks;
   const tasksOfTheDay = Object.entries(tasksList).reduce(
     (acc, [id, task]) =>
       task.date === date && !task.removed ? [...acc, { id, ...task }] : acc,
@@ -29,9 +29,11 @@ const Tasks = ({ indexDay, date }) => {
     const getStepHeight = () => {
       const { weekOfWork, step } = state.Timeline.userPreferences;
       const day = weekOfWork.find((e) => e.day === indexDay);
-      const lenghtStep = (day.hours[1] - day.hours[0]) / step;
-      const lengthHeight = tasksRef.current.offsetHeight / lenghtStep;
-      setStepHeight(lengthHeight);
+      if (day) {
+        const lenghtStep = (day.hours[1] - day.hours[0]) / step;
+        const lengthHeight = tasksRef.current.offsetHeight / lenghtStep;
+        setStepHeight(lengthHeight);
+      }
     };
     getStepHeight();
     const debouncedHandleResize = debounce(getStepHeight, 700);

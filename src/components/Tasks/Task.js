@@ -156,8 +156,26 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
         className={`Task__menu ${menu ? '-show' : ''}`}
         onClick={() => setMenu(false)}
       >
-        <div className="Task__menu__item -disabled">Copier</div>
+        <div
+          className="Task__menu__item"
+          onClick={() => actions.Tasks.copy(task)}
+        >
+          Copier
+        </div>
         <div className="Task__menu__item -disabled">Editer...</div>
+        {task.ticket ? (
+          <a
+            className="Task__menu__item"
+            href={`https://iolab.atlassian.net/browse/${task.ticket}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Voir le ticket...
+          </a>
+        ) : (
+          <div className="Task__menu__item -disabled">Voir le ticket...</div>
+        )}
+        <hr className="Task__menu__item--rh" />
         <div className="Task__menu__item" onClick={() => remove()}>
           Supprimer
         </div>

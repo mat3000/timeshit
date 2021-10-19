@@ -2,7 +2,7 @@ import React from 'react';
 import asField from '../../field';
 import './Input.scss';
 
-const Input = ({ state, api, label, disabled, ...rest }) => {
+const Input = ({ state, api, label, disabled, onChange, ...rest }) => {
   return (
     <p className={`Input ${disabled ? '-disabled' : ''}`}>
       <label className="Input__group">
@@ -13,6 +13,7 @@ const Input = ({ state, api, label, disabled, ...rest }) => {
           onChange={({ target }) => {
             api.setValue(target.value);
             api.setTouched();
+            onChange(target);
           }}
           onBlur={({ target }) => {
             if (state.touched) {

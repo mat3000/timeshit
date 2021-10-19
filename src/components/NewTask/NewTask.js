@@ -89,6 +89,7 @@ const NewTask = () => {
                   setDisabled(true);
                 }
               }}
+              autoComplete="off"
             />
           </div>
           <div className="NewTask__form__field">
@@ -96,7 +97,15 @@ const NewTask = () => {
               name="ticket"
               label="N° ticket"
               rows="2"
-              disabled={disabled}
+              onChange={(e) => {
+                const clientCurrent = state.Clients.clients.find(({ prefix }) =>
+                  e.value.includes(prefix)
+                );
+                if (clientCurrent) {
+                  formApi.current.setValue('client', clientCurrent);
+                }
+              }}
+              autoComplete="off"
             />
           </div>
         </div>

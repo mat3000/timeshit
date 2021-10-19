@@ -178,7 +178,7 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
         <div className="Task__menu__item -disabled">Editer...</div>
 
         <hr className="Task__menu__item--rh" />
-        <div className="Task__menu__item" onClick={() => remove()}>
+        <div className="Task__menu__item -remove" onClick={() => remove()}>
           Supprimer
         </div>
       </div>

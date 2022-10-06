@@ -21,9 +21,6 @@ export default () => {
     return { ...a, [e.clientId]: e.time[1] - e.time[0] };
   }, {});
 
-  console.log(state.Tasks.tasksList);
-  console.log(tasksObj);
-
   const tasksArr = Object.entries(tasksObj).map(([clientId, time]) => {
     const client = state.Clients.clients.reduce(
       (a, c) => (c.id === clientId ? c : a),

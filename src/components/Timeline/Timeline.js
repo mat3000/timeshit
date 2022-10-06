@@ -14,11 +14,15 @@ export default () => {
   const convertTimeToHour = useConvertTimeToHour();
 
   const tasksObj = Object.values(state.Tasks.tasksList).reduce((a, e) => {
+    if (e.removed) return a;
     if (a[e.clientId]) {
       return { ...a, [e.clientId]: e.time[1] - e.time[0] + a[e.clientId] };
     }
     return { ...a, [e.clientId]: e.time[1] - e.time[0] };
   }, {});
+
+  console.log(state.Tasks.tasksList);
+  console.log(tasksObj);
 
   const tasksArr = Object.entries(tasksObj).map(([clientId, time]) => {
     const client = state.Clients.clients.reduce(
@@ -98,12 +102,12 @@ export default () => {
                 </div>
                 <div className="Timelines__date__menu__item__time">
                   <b>
-                    {(time / 7).toLocaleString('fr', {
+                    {(time / 8).toLocaleString('fr', {
                       maximumFractionDigits: 1,
                     })}{' '}
                     jours
                   </b>{' '}
-                  (journée de 7h)
+                  (journée de 8h)
                 </div>
               </div>
             ))}

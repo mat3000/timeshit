@@ -96,6 +96,15 @@ export default () => {
                 <div className="Timelines__date__menu__item__time">
                   {convertTimeToHour(time)}
                 </div>
+                <div className="Timelines__date__menu__item__time">
+                  <b>
+                    {(time / 7).toLocaleString('fr', {
+                      maximumFractionDigits: 1,
+                    })}{' '}
+                    jours
+                  </b>{' '}
+                  (journée de 7h)
+                </div>
               </div>
             ))}
           </div>

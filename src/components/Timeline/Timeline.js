@@ -3,13 +3,35 @@ import { format } from 'date-fns';
 import fr from 'date-fns/locale/fr';
 import { useOvermind } from '../../overmind';
 import Day from '../Day/Day';
-// import { IconSettings } from '../Icon';
+import { useConvertTimeToHour } from '../hooks';
 import './Timeline.scss';
 
 let timeout = null;
 export default () => {
+  const [menu, setMenu] = useState(false);
   const { state, actions } = useOvermind();
   const [now, setNow] = useState(format(new Date(), 'yyyyMMdd'));
+  const convertTimeToHour = useConvertTimeToHour();
+
+  const tasksObj = Object.values(state.Tasks.tasksList).reduce((a, e) => {
+    if (a[e.clientId]) {
+      return { ...a, [e.clientId]: e.time[1] - e.time[0] + a[e.clientId] };
+    }
+    return { ...a, [e.clientId]: e.time[1] - e.time[0] };
+  }, {});
+
+  const tasksArr = Object.entries(tasksObj).map(([clientId, time]) => {
+    const client = state.Clients.clients.reduce(
+      (a, c) => (c.id === clientId ? c : a),
+      {}
+    );
+    return {
+      client: client.label,
+      color: client.color,
+      time,
+    };
+  });
+
   const dateStart =
     (state.Timeline.datesOfTheWeek &&
       state.Timeline.datesOfTheWeek.length &&
@@ -48,13 +70,36 @@ export default () => {
           className="Timelines__previous"
           onClick={() => actions.Timeline.previousWeek()}
         />
-        <span>
-          <b>Semaine {state.Timeline.weekIndex}</b>
-          {' / '}
-          {dateStart}
-          {' - '}
-          {dateEnd}
-        </span>
+        <div className="Timelines__date__content">
+          <div>
+            <b>Semaine {state.Timeline.weekIndex}</b>
+            {' / '}
+            {dateStart}
+            {' - '}
+            {dateEnd}
+          </div>
+          <button
+            onClick={() => setMenu((e) => !e)}
+            className="Timelines__date__button"
+          >
+            🗂
+          </button>
+          <div className="Timelines__date__menu" hidden={!menu}>
+            {tasksArr.map(({ client, color, time }) => (
+              <div
+                className="Timelines__date__menu__item"
+                style={{ background: color }}
+              >
+                <div className="Timelines__date__menu__item__client">
+                  {client}
+                </div>
+                <div className="Timelines__date__menu__item__time">
+                  {convertTimeToHour(time)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
         <button
           className="Timelines__next"
           onClick={() => actions.Timeline.nextWeek()}

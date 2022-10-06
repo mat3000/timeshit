@@ -5,7 +5,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
-    "date-fns": "2.16.1",
+    "date-fns": "2.29.3",
     "firebase": "7.22.0",
     "node-sass": "4.13.0",
     "overmind-react": "26.0.2",

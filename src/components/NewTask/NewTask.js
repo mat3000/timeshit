@@ -26,7 +26,7 @@ const NewTask = () => {
 
   useEffect(() => {
     if (state.Timeline.newTaskStatus && state.Tasks.clipboard) {
-      console.log('clipboard', state.Tasks.clipboard.clientId);
+      //console.log('clipboard', state.Tasks.clipboard.clientId);
       const clientLabel = state.Clients.clients.find(
         ({ id }) => id === state.Tasks.clipboard.clientId
       );

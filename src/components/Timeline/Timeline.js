@@ -106,6 +106,15 @@ export default () => {
                   </b>{' '}
                   (journée de 8h)
                 </div>
+                <div className="Timelines__date__menu__item__time">
+                  <b>
+                    {(time / 8 / 5).toLocaleString('fr', {
+                      maximumFractionDigits: 1,
+                    })}{' '}
+                    semaines
+                  </b>{' '}
+                  (semaine de 5 jours)
+                </div>
               </div>
             ))}
           </div>

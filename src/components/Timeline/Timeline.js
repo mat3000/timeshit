@@ -21,17 +21,21 @@ export default () => {
     return { ...a, [e.clientId]: e.time[1] - e.time[0] };
   }, {});
 
-  const tasksArr = Object.entries(tasksObj).map(([clientId, time]) => {
-    const client = state.Clients.clients.reduce(
-      (a, c) => (c.id === clientId ? c : a),
-      {}
-    );
-    return {
-      client: client.label,
-      color: client.color,
-      time,
-    };
-  });
+  const tasksArr = Object.entries(tasksObj)
+    .map(([clientId, time]) => {
+      const client = state.Clients.clients.reduce(
+        (a, c) => (c.id === clientId ? c : a),
+        {}
+      );
+      return {
+        client: client.label,
+        color: client.color,
+        time,
+      };
+    })
+    .sort((a, b) => {
+      return b.time - a.time;
+    });
 
   const dateStart =
     (state.Timeline.datesOfTheWeek &&

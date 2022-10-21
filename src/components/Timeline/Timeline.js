@@ -101,27 +101,26 @@ export default () => {
                 <div className="Timelines__date__menu__item__time">
                   {convertTimeToHour(time)}
                 </div>
-                {time / 8 >= 1 && (
+                {time / 7 >= 1 && (
                   <>
                     <div className="Timelines__date__menu__item__time">
                       <b>
-                        {(time / 8).toLocaleString('fr', {
+                        {(time / 7).toLocaleString('fr', {
                           maximumFractionDigits: 1,
                         })}{' '}
                         jours
                       </b>{' '}
-                      (journée de 8h)
+                      (journée de 7h)
                     </div>
                     <div className="Timelines__date__menu__item__time">
-                      <b>{Math.round((time / 8) * 400)} €</b> (base de
-                      400€/jour)
+                      <b>{Math.round((time / 7) * 400)} €</b> (400€/jour)
                     </div>
                   </>
                 )}
-                {time / 8 / 5 >= 1 && (
+                {time / 7 / 5 >= 1 && (
                   <div className="Timelines__date__menu__item__time">
                     <b>
-                      {(time / 8 / 5).toLocaleString('fr', {
+                      {(time / 7 / 5).toLocaleString('fr', {
                         maximumFractionDigits: 1,
                       })}{' '}
                       semaines

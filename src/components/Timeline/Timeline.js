@@ -112,12 +112,9 @@ export default () => {
                       </b>{' '}
                       (journée de 7h)
                     </div>
-                    <div className="Timelines__date__menu__item__time">
-                      <b>{Math.round((time / 7) * 400)} €</b> (400€/jour)
-                    </div>
                   </>
                 )}
-                {
+                {time / 7 / 5 >= 1 && (
                   <div className="Timelines__date__menu__item__time">
                     <b>
                       {(time / 7 / 5).toLocaleString('fr', {
@@ -127,7 +124,10 @@ export default () => {
                     </b>{' '}
                     (semaine de 5 jours)
                   </div>
-                }
+                )}
+                <div className="Timelines__date__menu__item__time">
+                  <b>{Math.round((time / 7) * 400)} €</b> (400€/jour)
+                </div>
               </div>
             ))}
           </div>

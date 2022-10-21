@@ -117,7 +117,7 @@ export default () => {
                     </div>
                   </>
                 )}
-                {time / 7 / 5 >= 1 && (
+                {
                   <div className="Timelines__date__menu__item__time">
                     <b>
                       {(time / 7 / 5).toLocaleString('fr', {
@@ -127,7 +127,7 @@ export default () => {
                     </b>{' '}
                     (semaine de 5 jours)
                   </div>
-                )}
+                }
               </div>
             ))}
           </div>

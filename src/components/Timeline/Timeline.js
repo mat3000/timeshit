@@ -68,6 +68,8 @@ export default () => {
     });
   }, []);
 
+  const total = tasksArr.reduce((a, e) => a + e.time, 0);
+
   return (
     <div className="Timelines">
       <div className="Timelines__date">
@@ -90,6 +92,38 @@ export default () => {
             🗂
           </button>
           <div className="Timelines__date__menu" hidden={!menu}>
+            <div
+              className="Timelines__date__menu__item"
+              style={{ background: 'grey' }}
+            >
+              <div className="Timelines__date__menu__item__client">Total</div>
+              <div className="Timelines__date__menu__item__time">
+                {Math.round(total / 7)}j {convertTimeToHour(total % 7)}
+              </div>
+              <div className="Timelines__date__menu__item__time">
+                <b>
+                  {((total / 7) * 400).toLocaleString('fr', {
+                    minimunFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}{' '}
+                  €{' '}
+                </b>
+                brut
+              </div>
+              <div className="Timelines__date__menu__item__time">
+                <b>
+                  {(
+                    (total / 7) * 400 -
+                    ((total / 7) * 400 * 24.6) / 100
+                  ).toLocaleString('fr', {
+                    minimunFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}{' '}
+                  €{' '}
+                </b>
+                net
+              </div>
+            </div>
             {tasksArr.map(({ client, color, time }) => (
               <div
                 className="Timelines__date__menu__item"
@@ -126,7 +160,7 @@ export default () => {
                   </div>
                 )}
                 <div className="Timelines__date__menu__item__time">
-                  <b>{Math.round((time / 7) * 400)} €</b> (400€/jour)
+                  <b>{Math.round((time / 7) * 400)} €</b>
                 </div>
               </div>
             ))}

@@ -25,15 +25,13 @@ export default ({ indexDay, hoursDay, now }) => {
   const nextDay = getTime(subDays(Date.now(), 1)) > getTime(date);
 
   const { tasksList = [] } = state.Tasks;
-  const tasksOfTheDay = Object.entries(tasksList).reduce(
+  const totalHourDay = Object.entries(tasksList).reduce(
     (acc, [id, task]) =>
       task.date === format(date, 'yyyy-MM-dd') && !task.removed
         ? acc + (task.time[1] - task.time[0])
         : acc,
     0
   );
-
-  console.log(tasksOfTheDay);
 
   return (
     <div className={`Timeline ${toDay ? '-today' : ''}`}>
@@ -42,8 +40,7 @@ export default ({ indexDay, hoursDay, now }) => {
         <span
           role="img"
           aria-label="alert"
-          hidden={!nextDay}
-          // hidden={!nextDay || totalHourDay === totalWorkedHourDay}
+          hidden={!nextDay || totalHourDay >= 7}
           title="Journée incomplète"
           style={{ fontSize: '12px', lineHeight: '10px' }}
         >

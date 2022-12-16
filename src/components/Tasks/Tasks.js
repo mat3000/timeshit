@@ -18,7 +18,7 @@ const Tasks = ({ indexDay, date }) => {
   const [stepHeight, setStepHeight] = useState(0);
   const tasksRef = useRef(null);
   const { state } = useOvermind();
-  const { tasksList = [], clipboard } = state.Tasks;
+  const { tasksList = [] } = state.Tasks;
   const tasksOfTheDay = Object.entries(tasksList).reduce(
     (acc, [id, task]) =>
       task.date === date && !task.removed ? [...acc, { id, ...task }] : acc,

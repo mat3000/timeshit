@@ -24,6 +24,17 @@ export default ({ indexDay, hoursDay, now }) => {
   const toDay = format(date, 'yyyyMMdd') === now;
   const nextDay = getTime(subDays(Date.now(), 1)) > getTime(date);
 
+  const { tasksList = [] } = state.Tasks;
+  const tasksOfTheDay = Object.entries(tasksList).reduce(
+    (acc, [id, task]) =>
+      task.date === format(date, 'yyyy-MM-dd') && !task.removed
+        ? acc + (task.time[1] - task.time[0])
+        : acc,
+    0
+  );
+
+  console.log(tasksOfTheDay);
+
   return (
     <div className={`Timeline ${toDay ? '-today' : ''}`}>
       <div className="Timeline__date">

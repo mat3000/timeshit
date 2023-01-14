@@ -44,7 +44,7 @@ export const useConvertTimeToHour = () => {
     //let day = Math.floor(time / 24);
     let hour = Math.floor(time);
     let minute = (time - hour) * 60;
-    //if (minute === 0) minute = '00';
+    if (minute === 0) minute = '00';
     //if (hour > 23) hour -= 24;
     //if (hour > 23) hour -= 24;
     // if (day) return `${day}j ${hour}h${minute}`;

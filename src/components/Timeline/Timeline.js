@@ -69,7 +69,7 @@ export default () => {
   }, []);
 
   const total = tasksArr.reduce((a, e) => a + e.time, 0);
-
+  /*
   const cumulDay = {};
   state.Timeline.userPreferences.weekOfWork.forEach(({ day, hours }, index) => {
     const date = format(state.Timeline.datesOfTheWeek[day], 'yyyy-MM-dd');
@@ -120,7 +120,7 @@ export default () => {
   });
 
   console.log(cumul);
-  console.log(machin);
+  console.log(machin);*/
 
   return (
     <div className="Timelines">
@@ -224,26 +224,6 @@ export default () => {
         />
       </div>
       <div className="Timelines__content">
-        <div style={{ flex: '0 0 300px' }}>
-          {truc.map(({ label, hours, time }) => (
-            <div>
-              <div style={{ color: '#FFF' }}>
-                {label}: {hours} ({time})
-                <hr />
-              </div>
-            </div>
-          ))}
-          <br />
-          <br />
-          {machin.map(({ label, hours, time }) => (
-            <div>
-              <div style={{ color: '#FFF' }}>
-                {label}: {hours} ({time})
-                <hr />
-              </div>
-            </div>
-          ))}
-        </div>
         {state.Timeline.userPreferences.weekOfWork.map(
           ({ day, hours }, index) => (
             <Day key={index} indexDay={day} hoursDay={hours} now={now} />

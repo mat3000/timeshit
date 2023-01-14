@@ -98,6 +98,30 @@ export default () => {
   console.log(cumulDay);
   console.log(truc);
 
+  const cumul = {};
+  const allTasks = Object.entries(state.Tasks.tasksList).reduce(
+    (acc, [id, task]) => (!task.removed ? [...acc, { id, ...task }] : acc),
+    []
+  );
+  allTasks.forEach((e) => {
+    if (cumul[e.clientId]) {
+      cumul[e.clientId] += e.time[1] - e.time[0];
+    } else {
+      cumul[e.clientId] = e.time[1] - e.time[0];
+    }
+  });
+
+  const machin = Object.entries(cumul).map(([clientId, time]) => {
+    const { label } = state.Clients.clients.reduce(
+      (a, c) => (c.id === clientId ? c : a),
+      {}
+    );
+    return { label, time, hours: convertTimeToHour(time) };
+  });
+
+  console.log(cumul);
+  console.log(machin);
+
   return (
     <div className="Timelines">
       <div className="Timelines__date">
@@ -202,6 +226,16 @@ export default () => {
       <div className="Timelines__content">
         <div style={{ flex: '0 0 300px' }}>
           {truc.map(({ label, hours, time }) => (
+            <div>
+              <div style={{ color: '#FFF' }}>
+                {label}: {hours} ({time})
+                <hr />
+              </div>
+            </div>
+          ))}
+          <br />
+          <br />
+          {machin.map(({ label, hours, time }) => (
             <div>
               <div style={{ color: '#FFF' }}>
                 {label}: {hours} ({time})

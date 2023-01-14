@@ -87,16 +87,16 @@ export default () => {
     });
   });
 
+  const truc = Object.entries(cumulDay).map(([clientId, time]) => {
+    const { label } = state.Clients.clients.reduce(
+      (a, c) => (c.id === clientId ? c : a),
+      {}
+    );
+    return { label, time, hours: convertTimeToHour(time) };
+  });
+
   console.log(cumulDay);
-  console.log(
-    Object.entries(cumulDay).map(([clientId, time]) => {
-      const { label } = state.Clients.clients.reduce(
-        (a, c) => (c.id === clientId ? c : a),
-        {}
-      );
-      return { label, time, hours: convertTimeToHour(time) };
-    })
-  );
+  console.log(truc);
 
   return (
     <div className="Timelines">
@@ -200,6 +200,16 @@ export default () => {
         />
       </div>
       <div className="Timelines__content">
+        <div style={{ flex: '0 0 300px' }}>
+          {truc.map(({ label, hours }) => (
+            <div>
+              <div style={{ color: '#FFF' }}>
+                {label}: {hours}
+                <hr />
+              </div>
+            </div>
+          ))}
+        </div>
         {state.Timeline.userPreferences.weekOfWork.map(
           ({ day, hours }, index) => (
             <Day key={index} indexDay={day} hoursDay={hours} now={now} />

@@ -70,6 +70,34 @@ export default () => {
 
   const total = tasksArr.reduce((a, e) => a + e.time, 0);
 
+  const cumulDay = {};
+  state.Timeline.userPreferences.weekOfWork.forEach(({ day, hours }, index) => {
+    const date = format(state.Timeline.datesOfTheWeek[day], 'yyyy-MM-dd');
+    const tasksOfTheDay = Object.entries(state.Tasks.tasksList).reduce(
+      (acc, [id, task]) =>
+        task.date === date && !task.removed ? [...acc, { id, ...task }] : acc,
+      []
+    );
+    tasksOfTheDay.forEach((e) => {
+      if (cumulDay[e.clientId]) {
+        cumulDay[e.clientId] += e.time[1] - e.time[0];
+      } else {
+        cumulDay[e.clientId] = e.time[1] - e.time[0];
+      }
+    });
+  });
+
+  console.log(cumulDay);
+  console.log(
+    Object.entries(cumulDay).map(([clientId, time]) => {
+      const { label } = state.Clients.clients.reduce(
+        (a, c) => (c.id === clientId ? c : a),
+        {}
+      );
+      return { label, time, hours: convertTimeToHour(time) };
+    })
+  );
+
   return (
     <div className="Timelines">
       <div className="Timelines__date">

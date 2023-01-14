@@ -19,37 +19,6 @@ function Firebase({ children }) {
     actions.logout();
   };
 
-  const test = (e) => {
-    e.preventDefault();
-    if (state.uid) {
-      // db.ref(`/users/${state.uid}/clients`)
-      //   .push({
-      //     label: 'test',
-      //     color: '#A9C',
-      //     description: 'test, etc...',
-      //     consider: true,
-      //     holiday: true,
-      //   })
-      //   .then((snapshot) => console.log(snapshot.key));
-      // db.ref(`/users/${state.uid}/clients`).set([
-      //   {
-      //     id: 2,
-      //     label: 'test',
-      //     color: '#A9C',
-      //     description: 'test, etc...',
-      //     consider: true,
-      //     holiday: true,
-      //   },
-      // ]);
-      //   db.ref(`/users/${state.uid}/userPreferences/weekOfWork`).set([
-      //     { day: 0, hours: [8, 18] },
-      //     { day: 1, hours: [9, 18] },
-      //     { day: 3, hours: [9, 18] },
-      //     { day: 4, hours: [9, 17] },
-      //   ]);
-    }
-  };
-
   useEffect(() => {
     if (!state.uid) {
       actions.Timeline.resetState();

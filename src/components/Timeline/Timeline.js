@@ -201,10 +201,10 @@ export default () => {
       </div>
       <div className="Timelines__content">
         <div style={{ flex: '0 0 300px' }}>
-          {truc.map(({ label, hours }) => (
+          {truc.map(({ label, hours, time }) => (
             <div>
               <div style={{ color: '#FFF' }}>
-                {label}: {hours}
+                {label}: {hours} ({time})
                 <hr />
               </div>
             </div>

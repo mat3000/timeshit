@@ -97,14 +97,14 @@ const NewTask = () => {
               name="ticket"
               label="N° ticket"
               rows="2"
-              onChange={(e) => {
-                const clientCurrent = state.Clients.clients.find(({ prefix }) =>
-                  e.value.includes(prefix)
-                );
-                if (clientCurrent) {
-                  formApi.current.setValue('client', clientCurrent);
-                }
-              }}
+              // onChange={(e) => {
+              //   const clientCurrent = state.Clients.clients.find(({ prefix }) =>
+              //     e.value.includes(prefix)
+              //   );
+              //   if (clientCurrent) {
+              //     formApi.current.setValue('client', clientCurrent);
+              //  }
+              // }}
               autoComplete="off"
             />
           </div>

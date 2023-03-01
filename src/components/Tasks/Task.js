@@ -159,7 +159,7 @@ const Task = ({ task, indexDay, tasksRef, stepHeight }) => {
         {task.ticket ? (
           <a
             className="Task__menu__item"
-            href={`https://iolab.atlassian.net/browse/${task.ticket}`}
+            href={`https://lyaprotect.atlassian.net/browse/${task.ticket}`}
             target="_blank"
             rel="noreferrer"
           >

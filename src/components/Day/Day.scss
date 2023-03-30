@@ -1,62 +1,71 @@
 @import '../../styles/tools.scss';
 
-.Timeline{
-	display: flex;
+.Timeline {
+  display: flex;
   flex-direction: column;
-	position: relative;
-	width: 100%;
-	height: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
   padding: 0 1px;
 }
 
 .Timeline__wrap {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	border-radius: 3px;
-	background: rgba(#FFF, .1);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  background: rgba(#fff, 0.1);
 }
 
 .Timeline__date {
-	width: 100%;
-	padding: 5px;
-	color: #FFF;
-	text-align: center;
-	// display: flex;
-	// justify-content: center;
-	// align-items: center;
+  width: 100%;
+  padding: 5px;
+  color: #fff;
+  text-align: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+}
+.Timeline__date__status {
+  font-size: 12px;
+  line-height: 10px;
+  display: none;
+
+  &[data-visible='true'] {
+    display: inline-block;
+  }
 }
 
 .Timeline__export {
-	@include reset-button();
+  @include reset-button();
 
-	position: absolute;
-	color: #FFF;
-	right: 5px;
-	// margin-right: 0;
-	// margin-left: auto;
+  position: absolute;
+  color: #fff;
+  right: 5px;
+  // margin-right: 0;
+  // margin-left: auto;
 }
 
 .Timeline__item {
-	position: absolute;
-	left: 0;
-	border-radius: 3px;
-	background-color: #EEE;
+  position: absolute;
+  left: 0;
+  border-radius: 3px;
+  background-color: #eee;
   width: 100%;
-  
+
   .-today & {
     box-shadow: 0 0 0 2px red;
   }
 
-	&::before{
-		@include noise();
+  &::before {
+    @include noise();
 
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		opacity: .3;
-	}
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+  }
 }

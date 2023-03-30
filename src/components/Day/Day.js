@@ -40,11 +40,22 @@ export default ({ indexDay, hoursDay, now }) => {
         <span
           role="img"
           aria-label="alert"
-          hidden={!nextDay || totalHourDay >= 7}
           title="Journée incomplète"
-          style={{ fontSize: '12px', lineHeight: '10px' }}
+          className="Timeline__date__status"
+          data-visible={
+            (!nextDay && totalHourDay > 7) || (nextDay && totalHourDay !== 7)
+          }
         >
           ⚠️
+        </span>
+        <span
+          role="img"
+          aria-label="alert"
+          title="Journée complète !"
+          className="Timeline__date__status"
+          data-visible={totalHourDay === 7}
+        >
+          ✅
         </span>
         <button
           className="Timeline__export"
